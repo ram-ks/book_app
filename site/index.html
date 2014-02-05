@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Library</title>
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+	<div class="books">
+		<form action="" id="add-book">
+			<label for="coverImage">CoverImage:</label><input type="file" id="coverImage">
+			<label for="title">Title:</label><input type="text" id="title">
+			<label for="author">Author:</label><input type="text" id="author">
+			<label for="releaseDate">Release Date:</label><input type="text" id="releaseDate">
+			<label for="keywords">Keywords:</label><input type="text" id="keywords">
+			<button id="add-btn">Add</button>
+		</form>
+	</div>
+	<script type="text/template" id="book-template">
+		<img src="<%= coverImage %>"/>
+		<ul>
+			<li><%= title %></li>
+			<li><%= author %></li>
+			<li><%= releaseDate %></li>
+			<li><%= keywords %></li>
+		</ul>
+		<button id="delete">Delete</button>
+	</script>
+	<script type="text/javascript" src="js/lib/jquery.js"></script>
+	<script type="text/javascript" src="js/lib/underscore.js"></script>
+	<script type="text/javascript" src="js/lib/backbone.js"></script>
+	<script type="text/javascript" src="js/models/book.js"></script>
+	<script type="text/javascript" src="js/collections/library.js"></script>
+	<script type="text/javascript" src="js/views/book-view.js"></script>
+	<script type="text/javascript" src="js/views/library-view.js"></script>
+	<script type="text/javascript" src="js/app.js"></script>
+</body>
+</html>
