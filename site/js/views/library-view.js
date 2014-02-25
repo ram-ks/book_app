@@ -4,9 +4,13 @@ var App = App || {};
 	App.libraryView = Backbone.View.extend({
 		tagName: 'ul',
 		className: 'book-content-wrap',
-		initialize: function(books){
-			this.collection = new App.library(books);
+		initialize: function(){
+			this.collection = new App.library();
+			this.collection.fetch({reset:true});
 			this.render();
+
+			this.listenTo( this.collection, 'add', this.addOne );
+			this.listenTo( this.collection, 'reset', this.render );
 		},
 		render: function(){
 			this.collection.each(this.addOne,this);
