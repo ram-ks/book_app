@@ -8,6 +8,11 @@ var App = App || {};
 			author: 'Anonymous',
 			releaseDate: 'N/A',
 			keywords: 'Fiction'
-		}
+		},
+		idAttribute: _.id
+		// parse: function(response){
+		// 	response.id = response._id
+		// 	return response
+		// }
 	});
 })();
