@@ -2,8 +2,10 @@ var App = App || {};
 
 (function () {
 	App.libraryView = Backbone.View.extend({
-		tagName: 'ul',
-		className: 'book-content-wrap',
+		el: '#books',
+		events:{
+			'click #add-btn' : 'addBook'
+		},
 		initialize: function(){
 			this.collection = new App.library();
 			this.collection.fetch({reset:true});
@@ -12,15 +14,52 @@ var App = App || {};
 			this.listenTo( this.collection, 'add', this.addOne );
 			this.listenTo( this.collection, 'reset', this.render );
 		},
+		addBook: function(e){
+			e.preventDefault();
+			var $inputs = this.$el.find('form input[type="text"]'),
+				Data = {}; 
+			$inputs.each(function(index,$el){
+				if($(this).val() != ""){
+					console.log($el.id);
+					if($el.id == "keywords"){
+						Data[$el.id] = [];
+						var str = $('#keywords').val(),
+							splitedStr = str.split(" ");
+						$.each(splitedStr,function(index,item){
+						    console.log(item);
+						    Data["keywords"].push({"keyword":item});
+						});
+					}else if($el.id == "releaseDate"){
+						Data[$el.id] = $("#releaseDate").datepicker('getDate').getTime();
+					}else{
+						Data[$el.id] = $(this).val();						
+					}
+				}
+			});
+
+			// this.collection.add( new App.Book(Data) );
+
+			this.collection.create(Data);
+			
+			// this.collection.create({
+			// 	title: "The Merchant Of Venice",
+  	// 			author: "William Shakespeare",
+  	// 			releaseDate: new Date(1980,6,6).getTime(),
+			// 	keywords:[
+			// 		{'keyword': 'Non-Fiction'},
+			// 		{'keyword': 'Classic'}
+			// 	]
+			// });
+		},
 		render: function(){
 			this.collection.each(this.addOne,this);
-			$('body').append(this.$el);
+			// this.$el.append(this.$el);
 		},
 		addOne: function(model){
 			var bookView = new App.bookView({
 				model: model
 			});
-			this.$el.append(bookView.render().el);
+			this.$el.find('ul.book-content-wrap').append(bookView.render().el);
 		}
 	});
 })();

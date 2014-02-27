@@ -3,6 +3,7 @@ body {
 }
 .book-container {
 	outline: 1px solid #aaa;
+	list-style: none;
 	width: 350px;
 	background-color: #fff;
 	float: left;
@@ -37,7 +38,7 @@ body {
 #add-book button {
 	display: block;
 	margin: 5px 20px 10px 10px;
-	float: right;
+	float: left;
 	clear: both;
 }
 #add-book div {
@@ -51,4 +52,12 @@ body {
 	clear: both;
 	font-size: 0;
 	line-height: 0;
+}
+.book-content-wrap{
+	clear: both;
+}
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
 }

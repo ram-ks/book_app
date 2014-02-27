@@ -9,7 +9,7 @@ var App = App || {};
 			releaseDate: 'N/A',
 			keywords: 'Fiction'
 		},
-		idAttribute: _.id
+		idAttribute: '_id'
 		// parse: function(response){
 		// 	response.id = response._id
 		// 	return response
