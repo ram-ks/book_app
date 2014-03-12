@@ -23,13 +23,14 @@
 	<script type="text/template" id="book-template">
 		<img src="<%= coverImage %>"/>
 		<ul>
-			<li><%= title %></li>
-			<li><%= author %></li>
-			<li><%= $.format.date( new Date(releaseDate), "MMMM yyyy") %></li>
-			<li><% _.each(keywords,function(keyobj){ %>
+			<li class="title" contenteditable="true"><%= title %></li>
+			<li class="author" contenteditable="true"><%= author %></li>
+			<li class="release-date" contenteditable="true"><%= $.format.date( new Date(releaseDate), "MMMM yyyy") %></li>
+			<li class="keywords" contenteditable="true"><% _.each(keywords,function(keyobj){ %>
 				<%= keyobj.keyword %>
 			<% }); %></li>
 		</ul>
+		<button id="update">Update</button>
 		<button id="delete">Delete</button>
 	</script>
 	<script type="text/javascript" src="js/lib/jquery.js"></script>

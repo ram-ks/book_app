@@ -8,10 +8,12 @@ var App = App || {};
 		},
 		initialize: function(){
 			this.collection = new App.library();
-			this.collection.fetch({reset:true});
+			this.collection.fetch({reset:true}); // fetch default set of models from collection 
+												 // setting reset will update collection in bulk
 			this.render();
 
 			this.listenTo( this.collection, 'add', this.addOne );
+
 			this.listenTo( this.collection, 'reset', this.render );
 		},
 		addBook: function(e){
@@ -40,16 +42,6 @@ var App = App || {};
 			// this.collection.add( new App.Book(Data) );
 
 			this.collection.create(Data);
-			
-			// this.collection.create({
-			// 	title: "The Merchant Of Venice",
-  	// 			author: "William Shakespeare",
-  	// 			releaseDate: new Date(1980,6,6).getTime(),
-			// 	keywords:[
-			// 		{'keyword': 'Non-Fiction'},
-			// 		{'keyword': 'Classic'}
-			// 	]
-			// });
 		},
 		render: function(){
 			this.collection.each(this.addOne,this);

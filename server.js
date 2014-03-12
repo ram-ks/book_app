@@ -6,11 +6,11 @@ var application_root = __dirname,
 var app = express();
 
 app.configure( function() {
-	app.use( express.bodyParser() );
+	app.use( express.bodyParser() ); // provides body object in request 
 	app.use( express.methodOverride() );
 	app.use( app.router );
-	app.use( express.static( path.join( application_root, 'site') ) );
-	app.use( express.errorHandler({ dumpExceptions: true, showStack: true }));
+	app.use( express.static( path.join( application_root, 'site') ) ); // making site as our public folder
+	app.use( express.errorHandler({ dumpExceptions: true, showStack: true })); // used for displaying errors in terminal
 });
 
 var port = 1010;
@@ -82,7 +82,7 @@ app.put('/api/books/:id',function(request,response){
 		book.releaseDate = request.body.releaseDate;
 		book.keywords = request.body.keywords;
 
-		return book.save(function(err){
+		return book.save(function(err,book){
 			if(!err){
 				console.log('updated');
 			}else{
