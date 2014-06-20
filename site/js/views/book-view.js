@@ -8,11 +8,7 @@ var App = App || {};
 			'click #delete': 'deleteBook',
 			'click #update': 'update'
 		},
-		initialize: function(){
-			this.model.on('change',this.saveModel, this);
-			// this.update();
-		},
-		update: function(e){
+		update: function(){
 
 			var $title = $(this.el).find('ul li.title').text(),
 				$author = $(this.el).find('ul li.author').text(),
@@ -26,6 +22,8 @@ var App = App || {};
 				'keywords':[{'keyword': $keywords}]
 			});
 
+			//After `set` fire saveModel method
+			this.saveModel();
 		},
 		saveModel: function(){
 			this.model.save();

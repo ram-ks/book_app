@@ -13,7 +13,7 @@ app.configure( function() {
 	app.use( express.errorHandler({ dumpExceptions: true, showStack: true })); // used for displaying errors in terminal
 });
 
-var port = 1010;
+var port = 3010;
 
 app.listen(port,function(){
 	console.log('server',port,app.settings.env );
